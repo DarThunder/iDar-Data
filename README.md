@@ -38,7 +38,7 @@ pacman -S idar-data
 Or manually via `wget` (good luck with the folder structure):
 
 ```lua
--- Create directory /iDar/Data/src/
+-- Create directory /Data/src/
 -- Download logger.lua, serializer.lua, crc32.lua
 ```
 
@@ -51,7 +51,7 @@ A robust JSON parser and stringifier tailored for Lua tables.
 **Usage:**
 
 ```lua
-local Serializer = require("iDar.Data.src.serializer")
+local Serializer = require("Data.serializer")
 
 local my_data = {
     name = "Turtle01",
@@ -77,7 +77,7 @@ Forget about `print()`. The Logger module writes structured events to disk, rota
 **Usage:**
 
 ```lua
-local Logger = require("iDar.Data.src.logger")
+local Logger = require("Data.logger")
 
 Logger.info("System startup complete.")
 Logger.warn({ component = "Modem", status = "Unstable" }) -- Auto-serializes tables!
@@ -97,7 +97,7 @@ Validates that your data hasn't been corrupted during transfer or storage.
 **Usage:**
 
 ```lua
-local CRC32 = require("iDar.Data.src.crc32")
+local CRC32 = require("Data.crc32")
 
 local data = "Important Mission Data"
 local checksum = CRC32.crc32(data)

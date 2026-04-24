@@ -1,11 +1,9 @@
 return {
     directory = "Data",
     files = {
-        ["src"] = {
-            "crc32.lua",
-            "logger.lua",
-            "serializer.lua"
-        }
+        ["crc32.lua"] = "src/crc32.lua",
+        ["logger.lua"] = "src/logger.lua",
+        ["serialiazer.lua"] = "src/serialiazer.lua"
     },
     dependencies = nil
 }

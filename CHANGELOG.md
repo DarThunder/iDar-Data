@@ -11,13 +11,11 @@ Initial public release of the **iDar-Data** suite. This library was extracted fr
 #### Core Modules
 
 - **Serializer (JSON):**
-
   - **Smart Array Detection:** implemented a heuristic (`is_array`) to distinguish between Lua's sequential tables (arrays) and key-value tables (objects). It now correctly outputs `[]` or `{}` based on the keys, preventing the dreaded mixed-index JSON corruption.
   - **Deterministic Output:** Object keys are now alphanumerically sorted before serialization. This ensures that `{a=1, b=2}` and `{b=2, a=1}` always produce the exact same string hash.
   - **Type Safety:** Added explicit handling for `string`, `number`, `boolean`, and `nil` (converted to `"null"` string).
 
 - **Logger:**
-
   - **Rotational Filing:** The logger now generates filenames dynamically based on the system date (`log_YYYY-MM-DD.log`).
   - **Auto-Serialization:** Passing a table to `Logger.info()` or other levels now automatically calls the Serializer, making debugging complex objects significantly easier than `textutils.serialize`.
   - **Levels:** Implemented standard severity levels: `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`.
@@ -30,3 +28,9 @@ Initial public release of the **iDar-Data** suite. This library was extracted fr
 
 - **Dependency Management:** The suite is designed to work with LuaJIT's `bit` library (standard in CC: Tweaked).
 - **String Escaping:** The serializer now properly escapes backslashes and double quotes to produce valid JSON syntax compliant with RFC 8259.
+
+### V1.0.1
+
+#### Changed
+
+- Manifest updated for compatibility with SATD V2.6

@@ -17,7 +17,7 @@ end
 function Serializer.serialize(value)
     if type(value) == "table" then
         if is_array(value) then
-            
+
             local result = "["
             local first = true
             for _, v in ipairs(value) do
@@ -29,11 +29,10 @@ function Serializer.serialize(value)
             end
             return result .. "]"
         else
-            
+
             local result = "{"
             local first = true
 
-            
             local keys = {}
             for k in pairs(value) do
                 table.insert(keys, k)
@@ -48,28 +47,28 @@ function Serializer.serialize(value)
                     result = result .. ","
                 end
                 first = false
-                
+
                 if type(k) == "string" then
                     result = result .. '"' .. k .. '":'
                 else
                     result = result .. '"' .. tostring(k) .. '":'
                 end
-                
+
                 result = result .. Serializer.serialize(v)
             end
             return result .. "}"
         end
     elseif type(value) == "string" then
-        
+
         local str = value:gsub('\\', '\\\\'):gsub('"', '\\"')
         return '"' .. str .. '"'
     elseif type(value) == "number" or type(value) == "boolean" then
         return tostring(value)
     elseif value == nil then
-        
+
         return "null"
     else
-        return nil 
+        return nil
     end
 end
 
@@ -114,7 +113,7 @@ function Serializer.deserialize(json)
                     str = str .. '\n'
                 elseif nextC == "t" then 
                     str = str .. '\t'
-                
+
                 else
                     str = str .. nextC
                 end
@@ -127,7 +126,7 @@ function Serializer.deserialize(json)
 
     local function readNumber()
         local num = ""
-        
+
         local c = json:sub(pos, pos)
         if c == "-" then
             num = num .. c
@@ -136,7 +135,7 @@ function Serializer.deserialize(json)
 
         while true do
             c = json:sub(pos, pos)
-            
+
             if c:match("%d") or c == "." or c == "e" or c == "E" or c == "+" or c == "-" then
                 num = num .. c
                 pos = pos + 1
@@ -154,7 +153,7 @@ function Serializer.deserialize(json)
         end
         return false
     end
-    
+
     local function readBoolean()
         local is_true = readLiteral("true")
         if is_true then
@@ -162,7 +161,7 @@ function Serializer.deserialize(json)
         elseif readLiteral("false") then
             return false
         end
-        
+
         return nil
     end
 
@@ -184,7 +183,6 @@ function Serializer.deserialize(json)
                 break
             end
 
-            
             local key = readString()
             skipWhitespace()
             nextChar() 
@@ -201,7 +199,7 @@ function Serializer.deserialize(json)
         end
         return tbl
     end
-    
+
     local function readArray()
         local arr = {}
         nextChar() 

@@ -1,4 +1,4 @@
-local Serializer = require("iDar.Data.src.serializer")
+local Serializer = require("Data.serialiazer")
 
 local Logger = {}
 local LOG_DIR = "iDar/logs/"
